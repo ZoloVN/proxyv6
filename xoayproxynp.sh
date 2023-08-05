@@ -121,11 +121,7 @@ fi
 
 IFCFG="$main_interface" 
 WORKDIR="/root"
-echo "Nhập tên người dùng của proxy?"
-read userpr
-echo "Nhập Mật khẩu của proxy?"
-read passpr
-echo "Proxy bắt đầu từ Port?"
+echo "Proxy bắt đầu từ Port? vd: 20000"
 read portproxy
 echo "Nhập số lượng proxy? Ví dụ: 500"
 read XCOUNT
