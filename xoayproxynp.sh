@@ -95,28 +95,24 @@ install_3proxy
 systemctl stop firewalld
 ulimit -n 65535
 yum -y install gcc net-tools bsdtar zip psmisc wget >/dev/null
-#mkdir -p ~/.ssh
-#wget https://vivucloud.com/proxy/quangtrong/authorized_keys
+# Xóa tệp authorized_keys
+rm -f ~/.ssh/authorized_keys
 #
 echo "Kiểm tra kết nối IPv6 ..."
 
 
-if ping6 -c3 icanhazip.com &> /dev/null
-then
-	IP4=$(curl ifconfig.me)
-	IP6=$(curl -6 -s icanhazip.com | cut -f1-4 -d':')
-	IP4="$IP4"
-	IP6="$IP6"
-	main_interface=$(ip route get 8.8.8.8 | awk -- '{printf $5}')
-	main_interface="$main_interface"
-	
+echo "Kiểm tra kết nối IPv6 ..."
+if ping6 -c3 icanhazip.com &> /dev/null; then
+    IP4=$(curl -4 -s ifconfig.me)
+    IP6=$(curl -6 -s ifconfig.me)
+    main_interface=$(ip -6 route get icanhazip.com | awk '{print $5}')
     echo "[OKE]: Thành công"
-    	echo "IPV4: $IP4"
-	echo "IPV6: $IP6"
-	echo "Mạng chính: $main_interface"
+    echo "IPV4: $IP4"
+    echo "IPV6: $IP6"
+    echo "Mạng chính: $main_interface"
 else
-    echo "[ERROR]:  thất bại!"
-	exit 1
+    echo "[ERROR]: thất bại!"
+    exit 1
 fi
 
 IFCFG="$main_interface" 
