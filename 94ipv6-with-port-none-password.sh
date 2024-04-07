@@ -76,8 +76,8 @@ yum -y install wget gcc net-tools bsdtar zip >/dev/null
 
 install_3proxy
 
-echo "Working folder = /home/cloudfly"
-WORKDIR="/home/cloudfly"
+echo "Working folder = /home/zolo"
+WORKDIR="/home/zolo"
 WORKDATA="${WORKDIR}/data.txt"
 mkdir $WORKDIR && cd $_
 
